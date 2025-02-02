@@ -22,6 +22,9 @@
 
     <div id="output"></div>
 
+    <!-- New Button to Copy to Clipboard -->
+    <button onclick="copyToClipboard()">Copy to Clipboard</button>
+
     <script>
         function translateToParentheses() {
             let input = document.getElementById("inputText").value.toUpperCase();
@@ -57,6 +60,20 @@
             }
 
             document.getElementById("output").textContent = output;
+        }
+
+        // Function to copy the translated text to the clipboard
+        function copyToClipboard() {
+            let outputText = document.getElementById("output").textContent;
+            if (outputText) {
+                navigator.clipboard.writeText(outputText).then(function() {
+                    alert("Copied to clipboard!");  // Notify the user that the text was copied
+                }, function(err) {
+                    alert("Failed to copy text: " + err);
+                });
+            } else {
+                alert("No text to copy!");
+            }
         }
     </script>
 
