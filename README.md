@@ -30,9 +30,9 @@
             for (let char of input) {
                 if (char >= 'A' && char <= 'Z') {
                     let count = char.charCodeAt(0) - 65 + 1; // A = 1, B = 2, ..., Z = 26
-                    output += "()".repeat(count) + " ";
+                    output += "(".repeat(count) + ")".repeat(count) + " ";
                 } else if (char === " ") {
-                    output += "  "; // Double space for readability
+                    output += "/ "; // Use '/' to represent spaces
                 }
             }
 
@@ -41,15 +41,17 @@
 
         function translateToEnglish() {
             let input = document.getElementById("inputText").value.trim();
-            let groups = input.split(/\s+/); // Split by spaces
+            let groups = input.split(" "); // Split by spaces
             let output = "";
 
             for (let group of groups) {
-                let count = (group.match(//g) || []).length; // Count occurrences of "()"
-                if (count >= 1 && count <= 26) {
-                    output += String.fromCharCode(64 + count); // Convert count to A-Z
+                if (group === "/") {
+                    output += " "; // Convert '/' back to space
                 } else {
-                    output += " "; // Preserve spaces
+                    let count = (group.length / 2); // Each letter is represented by pairs of "()"
+                    if (count >= 1 && count <= 26) {
+                        output += String.fromCharCode(64 + count); // Convert count to A-Z
+                    }
                 }
             }
 
