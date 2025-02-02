@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>English & Parentheses Translator</title>
+    <title>English ↔ Parentheses Translator</title>
     <style>
         body { font-family: Arial, sans-serif; text-align: center; margin: 50px; }
         textarea { width: 80%; height: 100px; margin: 10px 0; }
@@ -46,10 +46,10 @@
 
             for (let group of groups) {
                 let count = (group.match(//g) || []).length; // Count occurrences of "()"
-                if (count > 0 && count <= 26) {
+                if (count >= 1 && count <= 26) {
                     output += String.fromCharCode(64 + count); // Convert count to A-Z
                 } else {
-                    output += " "; // Keep spaces
+                    output += " "; // Preserve spaces
                 }
             }
 
